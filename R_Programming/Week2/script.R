@@ -14,8 +14,8 @@ complete <- function(directory, id){
   for (i in id) {
     a <- read.csv(paste(directory,formatC(i,width = 3, flag = "0"),".csv",sep = ""))
     b <- rbind(a,b)} 
-  b %>% filter(!is.na(Date) & !is.na(sulfate) & !is.na(nitrate)) %>% 
-    group_by(ID) %>% count() %>% arrange(desc(ID))
+  b %>% mutate(complete = !is.na(Date) & !is.na(sulfate) & !is.na(nitrate)) %>% 
+    group_by(ID) %>% summarise(nobs = sum(complete))
 }
 
 corr <- function(directory, threshold = 0){
