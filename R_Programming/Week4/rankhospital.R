@@ -1,6 +1,6 @@
 ## Programming Assignment 3
 ## rankhospital Function
-library(dplyr)
+
 rankhospital <- function(state, outcome, num = "best") {
     # Reads data and returns only variables of interest via a "Type" grep input
     readData <- function(type) {
