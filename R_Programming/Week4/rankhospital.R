@@ -1,7 +1,7 @@
 ## Programming Assignment 3
-## Best Function
-
-best <- function(state, outcome) {
+## rankhospital Function
+library(dplyr)
+rankhospital <- function(state, outcome, num = 1) {
     # Reads data and returns only variables of interest via a "Type" grep input
     readData <- function(type) {
         data <- read.csv("outcome-of-care-measures.csv",na.strings = "Not Available")
@@ -30,7 +30,7 @@ best <- function(state, outcome) {
     check <- checker(state, outcome)
     
     if(check[1] == TRUE & check[2] == TRUE) {
-        as.character(sorter(data,state,outcome)[1,1])
+        as.character(sorter(data,state,outcome)[num,1])
     } else if(check[1] == FALSE & check[2] == TRUE) {
         print(paste("Error in best(",state,",",outcome,"): invalid state",
                     sep = "'"))
