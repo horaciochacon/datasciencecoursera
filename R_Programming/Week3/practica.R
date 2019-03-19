@@ -34,7 +34,9 @@ mapply(noise,1:5,1:5,2)
 # corre una función sobre un vector, con un indice que permite agrupar el vector
 
 
+# split
 
-
+s <- split(airquality, airquality$Month)
+sapply(s, function(x) colMeans(x[,1:3],na.rm = T))
 
 
