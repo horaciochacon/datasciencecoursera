@@ -314,16 +314,82 @@ $(document).ready(function () {
 <p>Peer-graded Assignment: Getting and Cleaning Data Course Project - 2019</p>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>This is the repository for the coursera “Getting and Cleaning Data Course Project”. The goal of this assignment is to demonstrate the student’s ability to read raw data and transform it in tidy and ready to analyze format.</p>
+<p>This is the repository for the coursera “Getting and Cleaning Data Course Project”. The goal of this assignment is to demonstrate the student’s ability to read raw data and transform it in a tidy and ready to analyze format.</p>
 </div>
 <div id="the-dataset" class="section level2">
 <h2>The Dataset</h2>
 <p>The dataset used for this assignment is called “Human Activity Recognition Using Smartphones Data Set” and the complete information can be found in the following <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">link</a>. It comprises measurements from smartphones accelerometers performed during different activities (walking, standing, laying, etc.)</p>
 <div id="the-data-set-structure" class="section level3">
 <h3>The data set structure</h3>
-<p>The dataset structure can be found in this <a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">link</a>.</p>
-<p>├── README.txt ├── activity_labels.txt ├── features.txt ├── features_info.txt ├── test │ ├── Inertial Signals │ │ ├── body_acc_x_test.txt │ │ ├── body_acc_y_test.txt │ │ ├── body_acc_z_test.txt │ │ ├── body_gyro_x_test.txt │ │ ├── body_gyro_y_test.txt │ │ ├── body_gyro_z_test.txt │ │ ├── total_acc_x_test.txt │ │ ├── total_acc_y_test.txt │ │ └── total_acc_z_test.txt │ ├── X_test.txt │ ├── subject_test.txt │ └── y_test.txt └── train ├── Inertial Signals │ ├── body_acc_x_train.txt │ ├── body_acc_y_train.txt │ ├── body_acc_z_train.txt │ ├── body_gyro_x_train.txt │ ├── body_gyro_y_train.txt │ ├── body_gyro_z_train.txt │ ├── total_acc_x_train.txt │ ├── total_acc_y_train.txt │ └── total_acc_z_train.txt ├── X_train.txt ├── subject_train.txt └── y_train.txt</p>
+<p>The dataset files can be found in this <a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">link</a> and its structure is described below.</p>
+<pre class="s"><code>└── UCI HAR Dataset
+   ├── activity_labels.txt*
+   ├── features.txt*
+   ├── features_info.txt
+   ├── README.txt
+   ├── test
+   │  ├── Inertial Signals
+   │  │  ├── body_acc_x_test.txt
+   │  │  ├── body_acc_y_test.txt
+   │  │  ├── body_acc_z_test.txt
+   │  │  ├── body_gyro_x_test.txt
+   │  │  ├── body_gyro_y_test.txt
+   │  │  ├── body_gyro_z_test.txt
+   │  │  ├── total_acc_x_test.txt
+   │  │  ├── total_acc_y_test.txt
+   │  │  └── total_acc_z_test.txt
+   │  ├── subject_test.txt*
+   │  ├── X_test.txt*
+   │  └── y_test.txt*
+   └── train
+      ├── Inertial Signals
+      │  ├── body_acc_x_train.txt
+      │  ├── body_acc_y_train.txt
+      │  ├── body_acc_z_train.txt
+      │  ├── body_gyro_x_train.txt
+      │  ├── body_gyro_y_train.txt
+      │  ├── body_gyro_z_train.txt
+      │  ├── total_acc_x_train.txt
+      │  ├── total_acc_y_train.txt
+      │  └── total_acc_z_train.txt
+      ├── subject_train.txt*
+      ├── X_train.txt*
+      └── y_train.txt*</code></pre>
+<p>Marked with an &quot;*&quot; are the files that are needed for the assignment.</p>
 </div>
+</div>
+<div id="the-analysis" class="section level2">
+<h2>The analysis</h2>
+<p>The assingment asks for the following tasks or steps:</p>
+<ol style="list-style-type: decimal">
+<li>Merges the training and the test sets to create one data set.</li>
+<li>Extracts only the measurements on the mean and standard deviation for each measurement.</li>
+<li>Uses descriptive activity names to name the activities in the data set</li>
+<li>Appropriately labels the data set with descriptive variable names.</li>
+<li>From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.</li>
+</ol>
+<p>In order to execute those tasks, the undelying structure and relationships of the files had to be understood. <em>README.txt</em> and <em>features_info.txt</em> provide a good explanation of the composition of the dataset.</p>
+<ul>
+<li>The measurement data is stored in two separate datasets, a training and a test (this is done to perform machine learning tasks) one:
+<ul>
+<li><em>X_train.txt</em></li>
+<li><em>X_test.txt</em></li>
+</ul></li>
+<li>The measurements column’s headers are stored in a separate file called:
+<ul>
+<li><em>features.txt</em></li>
+</ul></li>
+<li>The subjects’ specific id were stored in:
+<ul>
+<li><em>subject_train.txt</em></li>
+<li><em>subject_test.txt</em></li>
+</ul></li>
+<li>The activity id is and its corresponding lookup table can be found in:
+<ul>
+<li><em>y_test.txt</em> and <em>y_train.txt</em></li>
+<li><em>activity_labels.txt</em></li>
+</ul></li>
+</ul>
 </div>
 </div>
 
