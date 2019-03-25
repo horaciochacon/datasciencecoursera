@@ -8,11 +8,11 @@ This is the repository for the coursera "Getting and Cleaning Data Course Projec
 
 ## The Dataset
 
-The dataset used for this assignment is called "Human Activity Recognition Using Smartphones Data Set" and the complete information can be found in the following [link](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). It comprises measurements from smartphones accelerometers performed during different activities (walking, standing, laying, etc.)
+The data set used for this assignment is called "Human Activity Recognition Using Smartphones Data Set" and the complete information can be found in the following [link](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). It comprises measurements from smartphones accelerometers performed during different activities (walking, standing, laying, etc.)
 
 ### The data set structure
 
-The dataset files can be found in this [link](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) and its structure is described below. 
+The data set files can be found in this [link](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) and its structure is described below. 
 
 ```s
 └── UCI HAR Dataset
@@ -53,7 +53,7 @@ Marked with an "*" are the files that are needed for the assignment.
 
 ## The analysis
 
-The assingment asks for the following tasks or steps:
+The assignment asks for the following tasks or steps:
 
 1. Merges the training and the test sets to create one data set.
 2. Extracts only the measurements on the mean and standard deviation for each measurement.
@@ -61,9 +61,9 @@ The assingment asks for the following tasks or steps:
 4. Appropriately labels the data set with descriptive variable names.
 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-In order to execute those tasks, the undelying structure and relationships of the files had to be understood. *README.txt* and *features_info.txt* provide a good explanation of the composition of the dataset. 
+In order to execute those tasks, the underlying structure and relationships of the files had to be understood. *README.txt* and *features_info.txt* provide a good explanation of the composition of the data set. 
 
-* The measurement data is stored in two separate datasets, a training and a test (this is done to perform machine learning tasks) one:  
+* The measurement data is stored in two separate data sets, a training and a test (this is done to perform machine learning tasks) one:  
     - *X_train.txt*
     - *X_test.txt*
 * The measurements column's headers are stored in a separate file called:
@@ -71,8 +71,25 @@ In order to execute those tasks, the undelying structure and relationships of th
 * The subjects' specific id were stored in:
     - *subject_train.txt*
     - *subject_test.txt*
-* The activity id is and its corresponding lookup table can be found in:
+* The activity id is and its corresponding look-up table can be found in:
     - *y_test.txt* and *y_train.txt*
     - *activity_labels.txt*
+    
+## The tasks executed in the run_analysis.R script
+
+1. Step 1: Here all the necessary *\*.txt* files are loaded, id columns are added for every train and test data set. Then the two separate data sets are appended row-wise.
+2. Step 2: All variables names coming from *features.txt* rename the previously unnamed (V1:V561) columns with dplyr rename_at function. Right after, I select specific column names that contain the *mean()* or *std()* string using **regular expresions** and grep.
+3. Step 3: By the means of a look-up table (*activity_labels.txt*) the activity ids coming from *y_test.txt* and *y_train.txt* are replaced. Intermediary variables and data frames are removed.
+4. Step 4: Variable names are formatted in an appropriate way (no non alphanumeric characters). I opted to leave the uppercase letters as they help differentiate columns with several words.
+5. Step 5: With a dplyr pipe workflow using gather to convert all measurements in two key-value variables and a group by-summarize statement the tidy data set is obtained ()
+
+## Output
+
+1. Procesed data frame: wearableMeasurements
+2. Tidy data frame:     wearableTidy
+
+
+
+
 
 

@@ -318,10 +318,10 @@ $(document).ready(function () {
 </div>
 <div id="the-dataset" class="section level2">
 <h2>The Dataset</h2>
-<p>The dataset used for this assignment is called “Human Activity Recognition Using Smartphones Data Set” and the complete information can be found in the following <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">link</a>. It comprises measurements from smartphones accelerometers performed during different activities (walking, standing, laying, etc.)</p>
+<p>The data set used for this assignment is called “Human Activity Recognition Using Smartphones Data Set” and the complete information can be found in the following <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">link</a>. It comprises measurements from smartphones accelerometers performed during different activities (walking, standing, laying, etc.)</p>
 <div id="the-data-set-structure" class="section level3">
 <h3>The data set structure</h3>
-<p>The dataset files can be found in this <a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">link</a> and its structure is described below.</p>
+<p>The data set files can be found in this <a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">link</a> and its structure is described below.</p>
 <pre class="s"><code>└── UCI HAR Dataset
    ├── activity_labels.txt*
    ├── features.txt*
@@ -360,7 +360,7 @@ $(document).ready(function () {
 </div>
 <div id="the-analysis" class="section level2">
 <h2>The analysis</h2>
-<p>The assingment asks for the following tasks or steps:</p>
+<p>The assignment asks for the following tasks or steps:</p>
 <ol style="list-style-type: decimal">
 <li>Merges the training and the test sets to create one data set.</li>
 <li>Extracts only the measurements on the mean and standard deviation for each measurement.</li>
@@ -368,9 +368,9 @@ $(document).ready(function () {
 <li>Appropriately labels the data set with descriptive variable names.</li>
 <li>From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.</li>
 </ol>
-<p>In order to execute those tasks, the undelying structure and relationships of the files had to be understood. <em>README.txt</em> and <em>features_info.txt</em> provide a good explanation of the composition of the dataset.</p>
+<p>In order to execute those tasks, the underlying structure and relationships of the files had to be understood. <em>README.txt</em> and <em>features_info.txt</em> provide a good explanation of the composition of the data set.</p>
 <ul>
-<li>The measurement data is stored in two separate datasets, a training and a test (this is done to perform machine learning tasks) one:
+<li>The measurement data is stored in two separate data sets, a training and a test (this is done to perform machine learning tasks) one:
 <ul>
 <li><em>X_train.txt</em></li>
 <li><em>X_test.txt</em></li>
@@ -384,12 +384,29 @@ $(document).ready(function () {
 <li><em>subject_train.txt</em></li>
 <li><em>subject_test.txt</em></li>
 </ul></li>
-<li>The activity id is and its corresponding lookup table can be found in:
+<li>The activity id is and its corresponding look-up table can be found in:
 <ul>
 <li><em>y_test.txt</em> and <em>y_train.txt</em></li>
 <li><em>activity_labels.txt</em></li>
 </ul></li>
 </ul>
+</div>
+<div id="the-tasks-executed-in-the-run_analysis.r-script" class="section level2">
+<h2>The tasks executed in the run_analysis.R script</h2>
+<ol style="list-style-type: decimal">
+<li>Step 1: Here all the necessary <em>*.txt</em> files are loaded, id columns are added for every train and test data set. Then the two separate data sets are appended row-wise.</li>
+<li>Step 2: All variables names coming from <em>features.txt</em> rename the previously unnamed (V1:V561) columns with dplyr rename_at function. Right after, I select specific column names that contain the <em>mean()</em> or <em>std()</em> string using <strong>regular expresions</strong> and grep.</li>
+<li>Step 3: By the means of a look-up table (<em>activity_labels.txt</em>) the activity ids coming from <em>y_test.txt</em> and <em>y_train.txt</em> are replaced. Intermediary variables and data frames are removed.</li>
+<li>Step 4: Variable names are formatted in an appropriate way (no non alphanumeric characters). I opted to leave the uppercase letters as they help differentiate columns with several words.</li>
+<li>Step 5: With a dplyr pipe workflow using gather to convert all measurements in two key-value variables and a group by-summarize statement the tidy data set is obtained ()</li>
+</ol>
+</div>
+<div id="output" class="section level2">
+<h2>Output</h2>
+<ol style="list-style-type: decimal">
+<li>Procesed data frame: wearableMeasurements</li>
+<li>Tidy data frame: wearableTidy</li>
+</ol>
 </div>
 </div>
 
